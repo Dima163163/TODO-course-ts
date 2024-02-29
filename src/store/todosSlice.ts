@@ -32,12 +32,14 @@ export const todosSlice = createSlice({
     },
     removeTodo(state, action) {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload)
+      localStorage.setItem(state.name, JSON.stringify(state.todos))
     },
     toggleTodoCompleted(state, action) {
       const toggledTodo = state.todos.find((todo)=> todo.id === action.payload);
       if (toggledTodo) {
         toggledTodo.isCompleted = !toggledTodo.isCompleted
       }
+      localStorage.setItem(state.name, JSON.stringify(state.todos))
     },
     resetTodos(state, action) {
       state.todos = [];
